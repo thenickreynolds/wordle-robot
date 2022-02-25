@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
-const WORDLE_REGEX = /Wordle \d+ \d\/\d\*?/g;
+const WORDLE_REGEX = /Wordle \d+ [\dX]\/6*?/g;
 const WORDLE_EXTRACT_DIGITS = /\d+/;
 
 function sendWelcomeMessage(thread, userId) {
@@ -28,10 +28,10 @@ client.once('ready', () => {
 
         switch (score) {
           case '6':
-            message.react("😅").catch(e => console.log("failed to react: " + e));
+            message.react('😅').catch(e => console.log("failed to react: " + e));
             break;
           case 'X':
-            message.react("😭").catch(e => console.log("failed to react: " + e));
+            message.react('😭').catch(e => console.log("failed to react: " + e));
             break;
         }
 
