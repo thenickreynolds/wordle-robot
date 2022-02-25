@@ -1,0 +1,15 @@
+{
+  "name": "world-robot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:thenickreynolds/wordle-robot.git",
+  "author": "Nick Reynolds <nick.reynolds@discordapp.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0"
+  }
+}
