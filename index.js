@@ -24,7 +24,7 @@ client.once('ready', () => {
       try {
         const extractions = matchingScore.match(WORDLE_EXTRACT_DIGITS);
         const day = extractions[0];
-        const score = extracts[1];
+        const score = extractions[1];
 
         switch (score) {
           case '6':
