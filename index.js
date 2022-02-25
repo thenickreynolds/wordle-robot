@@ -28,10 +28,10 @@ client.once('ready', () => {
 
         switch (score) {
           case '6':
-            message.react("sweat_smile");
+            message.react("😅");
             break;
           case 'X':
-            message.react("sob");
+            message.react("😭");
             break;
         }
 
