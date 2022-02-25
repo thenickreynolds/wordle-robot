@@ -6,7 +6,7 @@ require('dotenv').config()
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
 const WORDLE_REGEX = /Wordle \d+ \d\/\d\*?/g;
-const WORDLE_EXTRACT_DAY = / \d+ /;
+const WORDLE_EXTRACT_DIGITS = /\d+/;
 
 function sendWelcomeMessage(thread, userId) {
   thread.send(`Welcome and congrats <@${userId}>!`);
@@ -22,7 +22,19 @@ client.once('ready', () => {
     if (match) {
       const matchingScore = match[0];
       try {
-        const day = matchingScore.match(WORDLE_EXTRACT_DAY)[0].trim();
+        const extractions = matchingScore.match(WORDLE_EXTRACT_DIGITS);
+        const day = extractions[0];
+        const score = extracts[1];
+
+        switch (score) {
+          case '6':
+            message.react("sweat_smile");
+            break;
+          case 'X':
+            message.react("sob");
+            break;
+        }
+
         const threadName = `Wordle Solvers ${day}`;
         const canCreatePrivateThreads = message.guild.premiumTier.valueOf() >= 2;
         const threadType = canCreatePrivateThreads ? 'GUILD_PRIVATE_THREAD' : 'GUILD_PUBLIC_THREAD';
