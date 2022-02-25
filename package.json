@@ -2,7 +2,10 @@
   "name": "world-robot",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:thenickreynolds/wordle-robot.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/thenickreynolds/wordle-robot.git"
+  },
   "author": "Nick Reynolds <nick.reynolds@discordapp.com>",
   "license": "MIT",
   "dependencies": {
@@ -11,5 +14,13 @@
   },
   "devDependencies": {
     "eslint": "^8.9.0"
+  },
+  "description": "wordle-robot",
+  "bugs": {
+    "url": "https://github.com/thenickreynolds/wordle-robot/issues"
+  },
+  "homepage": "https://github.com/thenickreynolds/wordle-robot#readme",
+  "scripts": {
+    "start": "node index.js"
   }
 }
