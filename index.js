@@ -28,10 +28,10 @@ client.once('ready', () => {
 
         switch (score) {
           case '6':
-            message.react("😅");
+            message.react("😅").catch(e => console.log("failed to react: " + e));
             break;
           case 'X':
-            message.react("😭");
+            message.react("😭").catch(e => console.log("failed to react: " + e));
             break;
         }
 
