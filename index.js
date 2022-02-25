@@ -9,7 +9,7 @@ const WORDLE_REGEX = /Wordle \d+ \d\/\d\*?/g;
 const WORDLE_EXTRACT_DIGITS = /\d+/;
 
 function sendWelcomeMessage(thread, userId) {
-  thread.send(`Welcome and congrats <@${userId}>!`);
+  thread.send(`Welcome <@${userId}>!`);
 }
 
 // When the client is ready, run this code (only once)
