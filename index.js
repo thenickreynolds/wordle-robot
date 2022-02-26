@@ -8,6 +8,9 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const WORDLE_REGEX = /Wordle \d+ [\dX]\/6\*?/g;
 const WORDLE_EXTRACT_DIGITS = /[\dX]+/g;
 
+const WELCOME_MESSAGE = "Welcome players!";
+const WELCOME_MESSAGE_PUBLIC =  "Welcome players! Just a note - this thread is public since the server doesn't have enough boosts for private threads...";
+
 function getReaction(score) {
   switch (score) {
     case '1':
@@ -24,7 +27,7 @@ function getReaction(score) {
 }
 
 function sendWelcomeMessage(thread, userId) {
-  thread.send(`Welcome <@${userId}>!`);
+  thread.send(`👋 <@${userId}>!`);
 }
 
 // When the client is ready, run this code (only once)
@@ -60,6 +63,7 @@ client.once('ready', () => {
                 type: threadType,
                 reason: `Welcome winners of Worlde ${day}`
               }).then(threadChannel => {
+                threadChannel.send(canCreatePrivateThreads ? WELCOME_MESSAGE : WELCOME_MESSAGE_PUBLIC);
                 sendWelcomeMessage(threadChannel, message.author.id);
               });
             } else {
