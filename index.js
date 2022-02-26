@@ -5,8 +5,23 @@ require('dotenv').config()
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
 
-const WORDLE_REGEX = /Wordle \d+ [\dX]\/6*?/g;
-const WORDLE_EXTRACT_DIGITS = /\d+/;
+const WORDLE_REGEX = /Wordle \d+ [\dX]\/6\*?/g;
+const WORDLE_EXTRACT_DIGITS = /[\dX]+/g;
+
+function getReaction(score) {
+  switch (score) {
+    case '1':
+      return '😮';
+    case '2':
+      return '👏';
+    case '6':
+      return '😅';
+    case 'X':
+      return '😭';
+    }
+
+    return undefined;
+}
 
 function sendWelcomeMessage(thread, userId) {
   thread.send(`Welcome <@${userId}>!`);
@@ -26,16 +41,12 @@ client.once('ready', () => {
         const day = extractions[0];
         const score = extractions[1];
 
-        switch (score) {
-          case '6':
-            message.react('😅').catch(e => console.log("failed to react: " + e));
-            break;
-          case 'X':
-            message.react('😭').catch(e => console.log("failed to react: " + e));
-            break;
+        const reaction = getReaction(score);
+        if (reaction) {
+          message.react(reaction).catch(e => console.log("failed to react: " + e));
         }
 
-        const threadName = `Wordle Solvers ${day}`;
+        const threadName = `Wordle Players ${day}`;
         const canCreatePrivateThreads = message.guild.premiumTier.valueOf() >= 2;
         const threadType = canCreatePrivateThreads ? 'GUILD_PRIVATE_THREAD' : 'GUILD_PUBLIC_THREAD';
 
