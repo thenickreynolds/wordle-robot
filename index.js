@@ -61,7 +61,7 @@ client.once('ready', () => {
                 name: threadName,
                 autoArchiveDuration: 1440,
                 type: threadType,
-                reason: `Welcome winners of Worlde ${day}`
+                reason: `Players of Wordle ${day}`
               }).then(threadChannel => {
                 threadChannel.send(canCreatePrivateThreads ? WELCOME_MESSAGE : WELCOME_MESSAGE_PUBLIC);
                 sendWelcomeMessage(threadChannel, message.author.id);
